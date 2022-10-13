@@ -1,0 +1,45 @@
+plugins {
+  id "com.microsoft.azure.azurefunctions" version "1.11.0"
+}
+apply plugin: 'java'
+apply plugin: "com.microsoft.azure.azurefunctions"
+
+group 'ma.ocp.functions'
+version '1.0-SNAPSHOT'
+
+dependencies {
+    implementation 'com.microsoft.azure.functions:azure-functions-java-library:2.1.0'
+    implementation 'com.microsoft:durabletask-azure-functions:1.0.0-beta.1'
+    implementation 'org.apache.httpcomponents:httpclient:4.5.12'
+    implementation 'org.slf4j:slf4j-api'
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+}
+
+sourceCompatibility = '11'
+targetCompatibility = '11'
+
+compileJava.options.encoding = 'UTF-8'
+
+repositories {
+    mavenCentral()
+}
+
+azurefunctions {
+    resourceGroup = 'df-java-functions-group'
+    appName = 'gpb-load-data'
+    pricingTier = 'Consumption'
+    region = 'westus'
+    runtime {
+      os = 'Linux'
+      javaVersion = 'Java 11'
+    }
+    auth {
+      type = 'azure_cli'
+    }
+    localDebug = "transport=dt_socket,server=y,suspend=n,address=5005"
+}
+test {
+    useJUnitPlatform()
+}
