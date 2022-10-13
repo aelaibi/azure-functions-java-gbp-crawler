@@ -27,6 +27,9 @@ import java.net.URISyntaxException;
 public class BpConnector {
 
     private static final Logger log = LoggerFactory.getLogger(BpConnector.class.getName());
+    public static final String CONTENT_TYPE = "Content-Type";
+    public static final String APPLICATION_X_WWW_FORM_URLENCODED = "application/x-www-form-urlencoded";
+    public static final String APPLICATION_JSON = "application/json";
     BasicCookieStore cookieStore;
     CloseableHttpClient httpclient;
 
@@ -59,7 +62,7 @@ public class BpConnector {
                 .addParameter("Password", pwd)
                 .addParameter("as_sfid",assfid)
                 .addParameter("as_fid",asfid)
-                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .addHeader(CONTENT_TYPE, APPLICATION_X_WWW_FORM_URLENCODED)
                 .addHeader("Upgrade-Insecure-Requests", "1")
                 .addHeader("User-Agent", USER_AGENT)
                 .build();
@@ -87,7 +90,7 @@ public class BpConnector {
                 .addHeader("Accept", HEADER_ACCEPT)
                 .addHeader("Referer","https://oauth2.gbp.ma/Auth/Login")
                 .addHeader("Origin","https://oauth2.gbp.ma")
-                .addHeader("Content-Type", "application/x-www-form-urlencoded")
+                .addHeader(CONTENT_TYPE, APPLICATION_X_WWW_FORM_URLENCODED)
                 .addHeader("Upgrade-Insecure-Requests", "1")
                 .addHeader("User-Agent", USER_AGENT)
                 .addHeader("Accept-Language", "en-US,en;q=0.8,fr;q=0.6,ar;q=0.4")
@@ -110,7 +113,7 @@ public class BpConnector {
                 .addParameter("x-ms-request-id","zwWF")
                 .addParameter("x-ms-request-root-id","2SFvy")
                 .addParameter("X-Requested-With","XMLHttpRequest")
-                .addHeader("Content-Type", "application/json")
+                .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
 
         return execute(tmp);
@@ -124,7 +127,7 @@ public class BpConnector {
                 .addParameter("x-ms-request-id","zwWF")
                 .addParameter("x-ms-request-root-id","2SFvy")
                 .addParameter("X-Requested-With","XMLHttpRequest")
-                .addHeader("Content-Type", "application/json")
+                .addHeader(CONTENT_TYPE, APPLICATION_JSON)
                 .build();
         return execute(tmp);
     }

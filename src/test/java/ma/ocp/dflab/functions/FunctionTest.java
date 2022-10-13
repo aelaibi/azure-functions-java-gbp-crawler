@@ -55,7 +55,7 @@ public class FunctionTest {
         final HttpResponseMessage ret = function.run(req, context);
 
         // Verify
-        assertEquals(ret.getStatus(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, ret.getStatus());
         assertEquals(ret.getBody(), toBeReturned);
     }
 }
